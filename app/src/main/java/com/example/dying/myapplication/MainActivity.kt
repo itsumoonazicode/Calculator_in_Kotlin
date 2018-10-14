@@ -11,9 +11,9 @@ import android.widget.Toast
 
 class MainActivity : AppCompatActivity() {
 
-    val textView: TextView = findViewById(R.id.textView)
-    val editText: EditText = findViewById(R.id.editText)
-    val button: Button = findViewById(R.id.button)
+    lateinit var textView: TextView
+    lateinit var editText: EditText
+    lateinit var button: Button
 
     val buttonListener = object : View.OnClickListener {
         override fun onClick(v: View?) {
@@ -25,7 +25,31 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        textView = findViewById<TextView>(R.id.textView)
+        editText = findViewById<EditText>(R.id.editText)
+        button = findViewById<Button>(R.id.button)
+
         button.setOnClickListener(buttonListener)
 
+        findViewById<EditText>(R.id.button_0).setOnClickListener(buttonNumberListener)
+        findViewById<EditText>(R.id.button_1).setOnClickListener(buttonNumberListener)
+        findViewById<EditText>(R.id.button_2).setOnClickListener(buttonNumberListener)
+        findViewById<EditText>(R.id.button_3).setOnClickListener(buttonNumberListener)
+        findViewById<EditText>(R.id.button_4).setOnClickListener(buttonNumberListener)
+        findViewById<EditText>(R.id.button_5).setOnClickListener(buttonNumberListener)
+        findViewById<EditText>(R.id.button_6).setOnClickListener(buttonNumberListener)
+        findViewById<EditText>(R.id.button_7).setOnClickListener(buttonNumberListener)
+        findViewById<EditText>(R.id.button_8).setOnClickListener(buttonNumberListener)
+        findViewById<EditText>(R.id.button_9).setOnClickListener(buttonNumberListener)
+        findViewById<EditText>(R.id.button_dot).setOnClickListener(buttonNumberListener)
+
+    }
+
+    val buttonNumberListener = object : View.OnClickListener {
+        override fun onClick(view: View?) {
+            val button = view as Button
+
+            editText.append(button.getText())
+        }
     }
 }
