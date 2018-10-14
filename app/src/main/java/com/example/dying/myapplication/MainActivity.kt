@@ -12,12 +12,12 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        val value1: int = 1
-        val value2: int = 2
+        val value1: Int = 1
+        val value2: Int = 2
 
-        val value: double = value1 / value2
+        val value: Int = value1 / value2
         val textView = findViewById<TextView>(R.id.textView)
-        textView.setText(String.valueOf(value))
+        textView.text = value.toString()
 
         val editText = findViewById<EditText>(R.id.editText)
         editText.setText("EditTextに文字列を表示！")
