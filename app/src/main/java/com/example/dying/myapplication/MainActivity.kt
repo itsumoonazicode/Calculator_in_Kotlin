@@ -11,18 +11,21 @@ import android.widget.Toast
 
 class MainActivity : AppCompatActivity() {
 
+    val textView: TextView = findViewById(R.id.textView)
+    val editText: EditText = findViewById(R.id.editText)
+    val button: Button = findViewById(R.id.button)
+
+    val buttonListener = object : View.OnClickListener {
+        override fun onClick(v: View?) {
+            textView.setText(editText.getText().toString())
+        }
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        val textView: TextView = findViewById(R.id.textView)
-        val editText: EditText = findViewById(R.id.editText)
+        button.setOnClickListener(buttonListener)
 
-        val button: Button = findViewById(R.id.button)
-        button.setOnClickListener(object : View.OnClickListener {
-            override fun onClick(v: View?) {
-                textView.setText(editText.getText().toString())
-            }
-        })
     }
 }
