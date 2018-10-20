@@ -49,11 +49,11 @@ class MainActivity : AppCompatActivity() {
         findViewById<Button>(R.id.button_9).setOnClickListener(buttonNumberListener)
         findViewById<Button>(R.id.button_dot).setOnClickListener(buttonNumberListener)
 
-        findViewById<Button>(R.id.button_plus).setOnClickListener(buttonNumberListener)
-        findViewById<Button>(R.id.button_minus).setOnClickListener(buttonNumberListener)
-        findViewById<Button>(R.id.button_multi).setOnClickListener(buttonNumberListener)
-        findViewById<Button>(R.id.button_devide).setOnClickListener(buttonNumberListener)
-        findViewById<Button>(R.id.button_equal).setOnClickListener(buttonNumberListener)
+        findViewById<Button>(R.id.button_plus).setOnClickListener(buttonOperatorListener)
+        findViewById<Button>(R.id.button_minus).setOnClickListener(buttonOperatorListener)
+        findViewById<Button>(R.id.button_multi).setOnClickListener(buttonOperatorListener)
+        findViewById<Button>(R.id.button_devide).setOnClickListener(buttonOperatorListener)
+        findViewById<Button>(R.id.button_equal).setOnClickListener(buttonOperatorListener)
 
     }
 
