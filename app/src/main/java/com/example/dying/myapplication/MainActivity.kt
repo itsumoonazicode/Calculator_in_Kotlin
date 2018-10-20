@@ -15,14 +15,15 @@ class MainActivity : AppCompatActivity() {
     lateinit var textView: TextView
     lateinit var editText: EditText
     lateinit var button: Button
-    var isOperatorKeyPushed: Boolean = true // 初期化
-
-    var recentOperator: Int = R.id.button_equal
-    var result: Double = 0.0
 
     val buttonListener = object : View.OnClickListener {
-        override fun onClick(v: View?) {
-            textView.setText(editText.getText().toString())
+        override fun onClick(view: View?) {
+            recentOperator = R.id.button_equal
+            result = 0.0
+            isOperatorKeyPushed = false
+
+            textView.setText("")
+            editText.setText("")
         }
     }
 
@@ -56,6 +57,13 @@ class MainActivity : AppCompatActivity() {
 
     }
 
+    var isOperatorKeyPushed: Boolean = true // 初期化
+
+    var recentOperator: Int = R.id.button_equal
+    var result: Double = 0.0
+
+
+
     val buttonNumberListener = object : View.OnClickListener {
         override fun onClick(view: View?) {
             val button = view as Button
@@ -79,14 +87,15 @@ class MainActivity : AppCompatActivity() {
                 result = value
             } else {
                 result = calc(recentOperator, result, value)
-                editText.setText(result.toString())
             }
 
             recentOperator = operatorButton.getId();
             textView.setText(operatorButton.getText())
-            val isOperatorKeyPushed: Boolean = true
+            editText.setText(result.toString())
+            isOperatorKeyPushed = true
         }
     }
+//    textView.setText(editText.getText().toString())
 
     fun calc(operator: Int, value1: Double, value2: Double): Double {
         when (operator) {
