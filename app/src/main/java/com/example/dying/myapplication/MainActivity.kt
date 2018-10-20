@@ -8,12 +8,17 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
+import kotlinx.android.synthetic.main.ten_key.*
 
 class MainActivity : AppCompatActivity() {
 
     lateinit var textView: TextView
     lateinit var editText: EditText
     lateinit var button: Button
+    var isOperatorKeyPushed: Boolean = true // 初期化
+
+    var recentOperator: Int = R.id.button_equal
+    var result: Double = 0.0
 
     val buttonListener = object : View.OnClickListener {
         override fun onClick(v: View?) {
@@ -31,17 +36,23 @@ class MainActivity : AppCompatActivity() {
 
         button.setOnClickListener(buttonListener)
 
-        findViewById<EditText>(R.id.button_0).setOnClickListener(buttonNumberListener)
-        findViewById<EditText>(R.id.button_1).setOnClickListener(buttonNumberListener)
-        findViewById<EditText>(R.id.button_2).setOnClickListener(buttonNumberListener)
-        findViewById<EditText>(R.id.button_3).setOnClickListener(buttonNumberListener)
-        findViewById<EditText>(R.id.button_4).setOnClickListener(buttonNumberListener)
-        findViewById<EditText>(R.id.button_5).setOnClickListener(buttonNumberListener)
-        findViewById<EditText>(R.id.button_6).setOnClickListener(buttonNumberListener)
-        findViewById<EditText>(R.id.button_7).setOnClickListener(buttonNumberListener)
-        findViewById<EditText>(R.id.button_8).setOnClickListener(buttonNumberListener)
-        findViewById<EditText>(R.id.button_9).setOnClickListener(buttonNumberListener)
-        findViewById<EditText>(R.id.button_dot).setOnClickListener(buttonNumberListener)
+        findViewById<Button>(R.id.button_0).setOnClickListener(buttonNumberListener)
+        findViewById<Button>(R.id.button_1).setOnClickListener(buttonNumberListener)
+        findViewById<Button>(R.id.button_2).setOnClickListener(buttonNumberListener)
+        findViewById<Button>(R.id.button_3).setOnClickListener(buttonNumberListener)
+        findViewById<Button>(R.id.button_4).setOnClickListener(buttonNumberListener)
+        findViewById<Button>(R.id.button_5).setOnClickListener(buttonNumberListener)
+        findViewById<Button>(R.id.button_6).setOnClickListener(buttonNumberListener)
+        findViewById<Button>(R.id.button_7).setOnClickListener(buttonNumberListener)
+        findViewById<Button>(R.id.button_8).setOnClickListener(buttonNumberListener)
+        findViewById<Button>(R.id.button_9).setOnClickListener(buttonNumberListener)
+        findViewById<Button>(R.id.button_dot).setOnClickListener(buttonNumberListener)
+
+        findViewById<Button>(R.id.button_plus).setOnClickListener(buttonNumberListener)
+        findViewById<Button>(R.id.button_minus).setOnClickListener(buttonNumberListener)
+        findViewById<Button>(R.id.button_multi).setOnClickListener(buttonNumberListener)
+        findViewById<Button>(R.id.button_devide).setOnClickListener(buttonNumberListener)
+        findViewById<Button>(R.id.button_equal).setOnClickListener(buttonNumberListener)
 
     }
 
@@ -49,7 +60,46 @@ class MainActivity : AppCompatActivity() {
         override fun onClick(view: View?) {
             val button = view as Button
 
-            editText.append(button.getText())
+            if (isOperatorKeyPushed == true) {
+                editText.setText(button.getText());
+            } else {
+                editText.append(button.getText())
+            }
+
+            isOperatorKeyPushed = false
+        }
+    }
+
+    val buttonOperatorListener = object : View.OnClickListener {
+        override fun onClick(view: View?) {
+            val operatorButton = view as Button
+            val value: Double = editText.getText().toString().toDouble()
+
+            if (recentOperator == R.id.button_equal) {
+                result = value
+            } else {
+                result = calc(recentOperator, result, value)
+                editText.setText(result.toString())
+            }
+
+            recentOperator = operatorButton.getId();
+            textView.setText(operatorButton.getText())
+            val isOperatorKeyPushed: Boolean = true
+        }
+    }
+
+    fun calc(operator: Int, value1: Double, value2: Double): Double {
+        when (operator) {
+            R.id.button_plus
+            -> return value1 + value2
+            R.id.button_minus
+            -> return value1 - value2
+            R.id.button_multi
+            -> return value1 * value2
+            R.id.button_devide
+            -> return value1 / value2
+            else
+            -> return value1
         }
     }
 }
