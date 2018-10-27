@@ -15,6 +15,7 @@ class MainActivity : AppCompatActivity() {
     lateinit var textView: TextView
     lateinit var editText: EditText
     lateinit var button: Button
+    var memory: Double = 0.0 // M+の値を格納
 
     val buttonListener = object : View.OnClickListener {
         override fun onClick(view: View?) {
@@ -54,6 +55,11 @@ class MainActivity : AppCompatActivity() {
         findViewById<Button>(R.id.button_multi).setOnClickListener(buttonOperatorListener)
         findViewById<Button>(R.id.button_devide).setOnClickListener(buttonOperatorListener)
         findViewById<Button>(R.id.button_equal).setOnClickListener(buttonOperatorListener)
+
+        findViewById<Button>(R.id.memory_minus).setOnClickListener(buttonMemoryListener)
+        findViewById<Button>(R.id.memory_plus).setOnClickListener(buttonMemoryListener)
+        findViewById<Button>(R.id.memory_recall).setOnClickListener(buttonMemoryListener)
+        findViewById<Button>(R.id.memory_clear).setOnClickListener(buttonMemoryListener)
 
     }
 
@@ -111,4 +117,24 @@ class MainActivity : AppCompatActivity() {
             -> return value1
         }
     }
+
+    val buttonMemoryListener = object : View.OnClickListener {
+        override fun onClick(view: View?) {
+            val operatorButton = view as Button
+            recentOperator = operatorButton.getId()
+
+            if (recentOperator == R.id.memory_plus) {
+                memory += editText.getText().toString().toDouble()
+            } else if (recentOperator == R.id.memory_recall) {
+                editText.setText(memory.toString())
+            } else if (recentOperator == R.id.memory_clear) {
+                memory = 0.0
+            } else if (recentOperator == R.id.memory_minus) {
+                memory -= editText.getText().toString().toDouble()
+            }
+
+        }
+    }
+
+
 }

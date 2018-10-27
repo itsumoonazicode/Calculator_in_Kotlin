@@ -9,6 +9,42 @@
             android:layout_height="wrap_content"
     >
         <Button
+                android:id="@+id/memory_clear"
+                style="?attr/buttonBarButtonStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="MC"
+        />
+        <Button
+                android:id="@+id/memory_recall"
+                style="?attr/buttonBarButtonStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="MR"
+        />
+        <Button
+                android:id="@+id/memory_plus"
+                style="?attr/buttonBarButtonStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="M+"
+        />
+        <Button
+                android:id="@+id/memory_minus"
+                style="?attr/buttonBarButtonStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="M-"
+        />
+
+
+    </TableRow>
+    <TableRow
+            style="?attr/actionBarStyle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+    >
+        <Button
                 android:id="@+id/button_7"
                 style="?attr/buttonBarButtonStyle"
                 android:layout_width="wrap_content"
